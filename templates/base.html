@@ -40,7 +40,69 @@
 
     <body>
         <header class="container-fluid fixed-top">
-
+            <div class="row">
+                <div class="col">
+                    <a href="{% url 'home' %}" class=""><h2>Sweets 'N' Treats</h2></a>
+                </div>
+                <div class="col">
+                    <form class="col s12">
+                        <div class="row">
+                            <div class="input-field col s6">
+                                <i class="material-icons prefix">account_circle</i>
+                                <input id="icon_prefix" type="text" class="validate">
+                                <label for="icon_prefix">Username</label>
+                            </div>
+                            <div class="input-field col s6">
+                                <i class="material-icons prefix">phone</i>
+                                <input id="icon_telephone" type="tel" class="validate">
+                                <label for="icon_telephone">Password</label>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="col">
+                    <ul class="collection">
+                        {% if request.user.is_autenticated %}
+                            {% if request.user.is_superuser %}
+                                <li class="collection-item">
+                                    <a class="" href="#" id="user-options" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <p class="">Site Management</p>
+                                    </a>
+                                </li>
+                            {% endif %} 
+                            <li class="collection-item">
+                                <a class="" href="#" id="user-options" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <p class="">My Profile</p>
+                            </li>
+                            <li class="collection-item">
+                                <a class="" href="{% url 'account_logout' %}" id="user-options" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <p class="">Logout</p>
+                            </li>
+                        {% else %}
+                            <li class="collection-item">
+                                <a class="" href="{% url 'account_signup' %}" id="user-options" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <p class="">Create My Account</p>
+                                <a class="" href="{% url 'account_login' %}" id="user-options" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <p class="">Login</p>
+                            </li>
+                        {% endif %}
+                        <li class="list-inline-item">
+                            <a class="{% if grand_total %}text-blue{% else %}text-black{% endif %} nav-link" href="">
+                                <div class="text-center">
+                                    <div><i class=""></i></div>
+                                    <p class="my-0">
+                                        {% if grand_total %}
+                                            £{{ grand_total|floatformat:2 }}
+                                        {% else %}
+                                            £0.00
+                                        {% endif %}
+                                    </p>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </header>
             {% if messages %}
                 <div class="message-container">
@@ -56,6 +118,6 @@
 
             {% block postloadjs %}
             {% endblock %}
-            
+
     </body>
 </html>
