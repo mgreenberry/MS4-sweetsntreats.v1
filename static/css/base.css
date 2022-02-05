@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway&family=Roboto&display=swap');
+
+html {
+    height: 100%;
+}
+
+body {
+    background: url('/media/sweets.jpeg') no-repeat center center fixed;
+    background-size: cover;
+    color: #555;
+    font-family: 'Roboto';
+}
+
+.container-fluid {
+    max-width: 100%;
+}
+
+/* from Bulma */
+.icon {
+    align-items: center;
+    display: inline-flex;
+    justify-content: center;
+    height: 1.5rem;
+    width: 1.5rem;
+}
+/* from boutique ado css */
+.logo-font {
+    text-transform: uppercase;
+}
+
+.text-black {
+    color: #000 !important;
+}
